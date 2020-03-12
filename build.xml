@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<maven2-moduleset plugin="maven-plugin@2.7.1">
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.3.5">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>https://github.com/adamsdavis1976/mule-test.git</url>
+        <credentialsId>103e9ab4-5a10-4541-ab8b-98fac6fb5ba8</credentialsId>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions/>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <rootModule>
+    <groupId>my.test</groupId>
+    <artifactId>test-mule</artifactId>
+  </rootModule>
+  <rootPOM>test-mule/pom.xml</rootPOM>
+  <goals>clean verify -P ci</goals>
+  <aggregatorStyleBuild>true</aggregatorStyleBuild>
+  <incrementalBuild>false</incrementalBuild>
+  <ignoreUpstremChanges>false</ignoreUpstremChanges>
+  <archivingDisabled>false</archivingDisabled>
+  <siteArchivingDisabled>false</siteArchivingDisabled>
+  <fingerprintingDisabled>false</fingerprintingDisabled>
+  <resolveDependencies>false</resolveDependencies>
+  <processPlugins>false</processPlugins>
+  <mavenValidationLevel>-1</mavenValidationLevel>
+  <runHeadless>false</runHeadless>
+  <disableTriggerDownstreamProjects>false</disableTriggerDownstreamProjects>
+  <blockTriggerWhenBuilding>true</blockTriggerWhenBuilding>
+  <settings class="jenkins.mvn.FilePathSettingsProvider">
+    <path>/Users/adamdavis/.m2/settings_ci.xml</path>
+  </settings>
+  <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
+  <reporters/>
+  <publishers>
+    <au.com.centrumsystems.hudson.plugin.buildpipeline.trigger.BuildPipelineTrigger plugin="build-pipeline-plugin@1.4.7">
+      <configs>
+        <hudson.plugins.git.GitRevisionBuildParameters plugin="git@2.3.5">
+          <combineQueuedCommits>false</combineQueuedCommits>
+        </hudson.plugins.git.GitRevisionBuildParameters>
+      </configs>
+      <downstreamProjectNames>test-project-release-maven</downstreamProjectNames>
+    </au.com.centrumsystems.hudson.plugin.buildpipeline.trigger.BuildPipelineTrigger>
+  </publishers>
+  <buildWrappers/>
+  <prebuilders/>
+  <postbuilders/>
+  <runPostStepsIfResult>
+    <name>SUCCESS</name>
+    <ordinal>0</ordinal>
+    <color>BLUE</color>
+    <completeBuild>true</completeBuild>
+  </runPostStepsIfResult>
+</maven2-moduleset>
+    plugins {
+      id "net.saliman.cobertura" version "2.2.8"
+    }
+
+    println '---PROJECTFOLDER---'
+    println project.projectDir
+
+    apply plugin: 'java'
+    apply plugin: 'findbugs'
+    apply plugin: 'pmd'
+    apply plugin: 'jdepend'
+    apply plugin: 'checkstyle'
+
+    repositories {
+        mavenCentral()
+    }
+
+    sourceSets {
+        main {
+            java {
+                srcDirs = ['folder/src']
+            }
+        }
+        test {
+            java {
+                srcDirs = ['folder/tests']
+            }
+        }
+    }
+
+    dependencies {
+        testCompile 'junit:junit:4.12'
+
+        /*
+        -   stevesaliman/gradle-cobertura-plugin
+        -   ClassNotFoundException on 2.2.7 but 2.2.6
+        -   https://github.com/stevesaliman/gradle-cobertura-plugin/issues/75
+        -   you need to add the following testRuntime´s
+        */
+        testRuntime 'org.slf4j:slf4j-nop:1.7.12' // for cobertura
+    }
+
+    cobertura {
+        coverageFormats = ['html', 'xml']
+        coverageReportDir = new File("$buildDir/reports/cobertura")
+    }
+
+    findbugs {
+        sourceSets = [sourceSets.main]
+        ignoreFailures = true
+        reportsDir = file("$buildDir/reports/findbugsReports")
+        effort = "max"
+        reportLevel = "high"
+    }
+
+    pmd {
+        sourceSets = [sourceSets.main]
+        ignoreFailures = true
+        reportsDir = file("$buildDir/reports/pmdReports")
+        ruleSets = [
+            'java-basic',
+            'java-braces',
+            'java-comments',
+            'java-empty',
+            'java-controversial',
+            'java-coupling',
+            'java-design',
+            'java-imports',
+            'java-logging-java',
+            'java-migrating',
+            'java-naming',
+            'java-optimizations',
+            'java-strings',
+            'java-sunsecure',
+            'java-unusedcode',
+            'java-unnecessary'
+            ]
+    }
+
+    jdepend {
+        sourceSets = [sourceSets.main]
+        ignoreFailures = true
+        reportsDir = file("$buildDir/reports/jdependReports")
+    }
+
+    checkstyle {
+        sourceSets = [sourceSets.main]
+        showViolations = false
+        reportsDir = file("$buildDir/reports/checkstyleReports")
+        configFile = file("${project.projectDir}/lib/checkstyle_styles/google_checks.xml")
+    }
+
+    task javaDocs(type: Javadoc) {
+      source = sourceSets.main.allJava
+    }
