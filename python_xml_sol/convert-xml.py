@@ -42,7 +42,7 @@ def remove_junk(file,line):
 running top down on all dirs and files from current dir searching for build.xml
 """
 def main():
-    for root, dirs, files in os.walk("..", topdown=True):
+    for root, dirs, files in os.walk("../..", topdown=True):
         for f in files:
             if "build.xml" in f:
                 xml_parser(f)
