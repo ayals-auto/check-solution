@@ -1,0 +1,31 @@
+
+<div class="header">
+  <h1>Checkpoint Devops Solution</h1>
+ 
+</div>
+
+<mat-toolbar class="topnav">
+
+</mat-toolbar>
+
+<div class="row">
+  <mat-card class="fakeimg">
+ 
+    
+      <h1> Check out our new app you </h1> 
+      <h2> send post and we are counting it for you </h2>
+      <button mat-raised-button color="primary" (click)="post()">Click to Send Post</button>
+      <h2> Number of posts:  {{ filteredPosts }} <button (click)="refresh()"> <i class="material-icons">refresh</i></button> </h2>
+      
+       <img src="/assets/img/checkpoint.jpg" >
+
+  </mat-card>
+
+
+<div class="footer">
+  <h2>Support: contact us on ayalappleid@gmail.com</h2>
+</div>
+
+
+
+<router-outlet></router-outlet>
