@@ -2,6 +2,7 @@
 
 import xml.etree.ElementTree as ET
 import os
+root_path = '.'
 
 """
     function that  parse the xml file
@@ -30,19 +31,21 @@ all the lines that number is small from the number received in the exeption
 sending back the the new file again the xml_parser
 """
 def remove_junk(file,line):
-    with open(file, "r") as f:
-        lines = f.readlines()
-        for num, l in enumerate(lines, 1):
-            if num < line:
-                with open("new_build.xml",'a') as f:
-                    f.writelines(l)
-        xml_parser("new_build.xml")
-
+    try:
+        with open(file, "r") as f:
+            lines = f.readlines()
+            for num, l in enumerate(lines, 1):
+                if num < line:
+                    with open("new_build.xml",'a') as f:
+                        f.writelines(l)
+                xml_parser("new_build.xml")
+    finally:
+        f.close()
 """ 
 running top down on all dirs and files from current dir searching for build.xml
 """
 def main():
-    for root, dirs, files in os.walk("../..", topdown=True):
+    for root, dirs, files in os.walk(root_path, topdown=True):
         for f in files:
             if "build.xml" in f:
                 xml_parser(f)
