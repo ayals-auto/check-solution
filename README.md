@@ -1,6 +1,6 @@
-# check-solution
+check-solution
 ------------------------------------------------------------------------------
-# python solution for build XML
+python solution for build XML
 
 1. using os walk to check all files in the current directory and subdirectories.
 2. trying to parse the XML. the first time probably will fail since the XML file contains "junk".
@@ -11,7 +11,7 @@
 1. gui - using simple gui PySimpleGUI -- tested on windows
 
 
-# web server solution.
+web server solution.
 --------------------------------------------------------------------------------
 Main logic - the enviorment where this server is running must be connected to the internet.
 1. sending post to the server stores in the request on mongo(Mlab)
@@ -21,7 +21,7 @@ Main logic - the enviorment where this server is running must be connected to th
 frontend - created with angular nginx as proxy.
 backend - node js server 
 
-# running web server.
+running web server.
 ---------------------------------------------------------------------------------
 Run as docker container
 created two docker files 
