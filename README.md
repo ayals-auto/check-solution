@@ -7,6 +7,9 @@
 3. the exception caching the line where the parse is failed.
 4. send the file to function that creates a new file only with XML structure.
 5. send the file back to the  XML parsing function. removing the new file.
+----------------------------------------------------------------------------
+1. gui - using simple gui PySimpleGUI -- tested on windows
+
 
 # web server solution.
 
