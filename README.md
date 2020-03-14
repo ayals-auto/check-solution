@@ -10,17 +10,22 @@
 
 # web server solution.
 
-main logic - the enviorment where this server is running must be connected to the internet.
+Main logic - the enviorment where this server is running must be connected to the internet.
 1. sending post to the server stores in the request on mongo(Mlab)
 2. Get function counting the number of documents in the collection and sending the answer to the user.
 3. refresh button is sending also get request.
 
-front - created with angular nginx as proxy.
-running the server.
+frontend - created with angular nginx as proxy.
+backend - node js server 
+
+# running web server.
+
+Run as docker container
 created two docker files 
 1. file for backend server 
-1. file for front in angular-front libery
+2. file for front in angular-front libery
 
+Run on Kubernetes 
 kubernetes folder 
 1. backend-node.yaml
 2. front-angular.yaml
