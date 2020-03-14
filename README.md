@@ -26,7 +26,7 @@ created two docker files
 2. file for front in angular-front libery
 3. docker compose file
 
-run docker-compose up --build -d
+run: docker-compose up --build -d
 
 
 Run on Kubernetes 
