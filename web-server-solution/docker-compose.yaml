@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+
+  app-backend:
+    build: ./
+    container_name: app-backend
+    ports:
+      - 3000:3000
+    
+
+  app-ui:
+    build: ./angular-front
+    container_name: app-ui
+    ports:
+      - 80:80
+    links:
+      - app-backend
