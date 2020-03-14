@@ -1,5 +1,5 @@
-check-solution
-------------------------------------------------------------------------------
+#check-solution
+
 python solution for build XML
 
 1. using os walk to check all files in the current directory and subdirectories.
