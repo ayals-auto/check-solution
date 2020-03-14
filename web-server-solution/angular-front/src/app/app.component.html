@@ -1,31 +1,27 @@
-
 <div class="header">
-  <h1>Checkpoint Devops Solution</h1>
- 
+  <h1>Checkpoint Devops Solution</h1> 
 </div>
 
-<mat-toolbar class="topnav">
-
-</mat-toolbar>
-
+<mat-toolbar class="topnav"></mat-toolbar>
 <div class="row">
   <mat-card class="fakeimg">
  
-    
-      <h1> Check out our new app you </h1> 
-      <h2> send post and we are counting it for you </h2>
-      <button mat-raised-button color="primary" (click)="post()">Click to Send Post</button>
-      <h2> Number of posts:  {{ filteredPosts }} <button (click)="refresh()"> <i class="material-icons">refresh</i></button> </h2>
-      
-       <img src="/assets/img/checkpoint.jpg" >
-
-  </mat-card>
-
+<div class="container">
+  <div class="row">
+    <div class="column-66">
+      <h1 class="xlarge-font"><b>The App</b></h1>
+      <h1 class="large-font" style="color:MediumSeaGreen;"><b>Check out our new app</b></h1>
+      <p><span style="font-size:36px">Send POST like a pro.</span> Send a POST request, and we are counting it for you</p>
+        <button mat-raised-button color="primary" (click)="post()">Click to Send Post</button>
+        <button mat-raised-button color="primary" (click)="refresh()"> <i class="material-icons"></i>refresh if you dont see the new post</button>
+        <h2>Number of posts:  {{ filteredPosts }}</h2>
+    </div>
+    <div class="column-33">
+        <img src="/assets/img/checkpoint.jpg" >
+    </div>
+  </div>
+</div>
 
 <div class="footer">
   <h2>Support: contact us on ayalappleid@gmail.com</h2>
 </div>
-
-
-
-<router-outlet></router-outlet>
