@@ -1,4 +1,4 @@
-#check-solution
+# Checkpoint solution
 
 python solution for build XML
 
