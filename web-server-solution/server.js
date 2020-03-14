@@ -1,16 +1,10 @@
 var express = require('express')
-var cors = require('cors')
-
 var mongoose = require('mongoose')
 var app = express()
-
 mongoose.Promise = Promise
 var MongoClient = require('mongodb').MongoClient;
 var url = 'mongodb://devopscheck:A0544799449ab!@ds145184.mlab.com:45184/checkpoint-devops';
-app.use(cors())
 time = Date.toString()
-
-
 
 app.get('/' , async (req, res) => {
     try {
@@ -18,7 +12,7 @@ app.get('/' , async (req, res) => {
             if (err) throw err;
             var dbo = db.db("checkpoint-devops");
              dbo.collection("posts").countDocuments(function(err, result) {
-              res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+              res.setHeader('Access-Control-Allow-Origin', '*');
               
               res.json(result) 
               if (err) throw err;
