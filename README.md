@@ -24,7 +24,7 @@ Run as docker container
 created two docker files 
 1. file for backend server 
 2. file for front in angular-front libery
-3/ docker compose file
+3. docker compose file
 
 run docker-compose up --build -d
 
