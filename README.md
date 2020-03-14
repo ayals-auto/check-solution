@@ -18,8 +18,8 @@ main logic - the enviorment where this server is running must be connected to th
 front - created with angular nginx as proxy.
 running the server.
 created two docker files 
-a. file for backend server 
-b. file for front in angular-front libery
+1. file for backend server 
+1. file for front in angular-front libery
 
 kubernetes folder 
 1. backend-node.yaml
