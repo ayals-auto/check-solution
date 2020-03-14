@@ -1,5 +1,5 @@
 # check-solution
-
+------------------------------------------------------------------------------
 # python solution for build XML
 
 1. using os walk to check all files in the current directory and subdirectories.
@@ -12,7 +12,7 @@
 
 
 # web server solution.
-
+--------------------------------------------------------------------------------
 Main logic - the enviorment where this server is running must be connected to the internet.
 1. sending post to the server stores in the request on mongo(Mlab)
 2. Get function counting the number of documents in the collection and sending the answer to the user.
@@ -22,7 +22,7 @@ frontend - created with angular nginx as proxy.
 backend - node js server 
 
 # running web server.
-
+---------------------------------------------------------------------------------
 Run as docker container
 created two docker files 
 1. file for backend server 
